@@ -21,6 +21,7 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.level.ChunkPos
 import net.minecraft.world.phys.Vec3
+import kotlin.math.pow
 
 // TODO while we're making breaking changes I *really* want to have the vector in the entity's local space
 // WRT its look vector
@@ -54,6 +55,9 @@ object OpTeleport : SpellAction {
 
         val targetMiddlePos = teleportee.position().add(0.0, teleportee.eyeHeight / 2.0, 0.0)
 
+        //current line
+        val cost = 5.0.pow(delta.length()/10)
+        
         return SpellAction.Result(
             Spell(teleportee, delta),
             10 * MediaConstants.CRYSTAL_UNIT,
